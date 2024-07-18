@@ -2,12 +2,9 @@ from nada_dsl import *
 
 def nada_main():
     party1 = Party(name="Party1")
-    list1 = [SecretInteger(Input(name=f"list1_int{i}", party=party1)) for i in range(3)]
-    list2 = [SecretInteger(Input(name=f"list2_int{i}", party=party1)) for i in range(3)]
+    my_int1 = SecretInteger(Input(name="my_int1", party=party1))
+    my_int2 = SecretInteger(Input(name="my_int2", party=party1))
 
-    results = []
-    for i in range(3):
-        result = list1[i] * list2[i] + list1[i]
-        results.append(result)
+    new_int = my_int1 * my_int2
 
-    return [Output(results[i], f"result{i}", party=party1) for i in range(3)]
+    return [Output(new_int, "my_output", party=party1)]
